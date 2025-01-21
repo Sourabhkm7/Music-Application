@@ -1,5 +1,7 @@
 'use client';
 
+import { InfiniteMovingCards } from "./ui/infinite-moving-cards";
+
 type Testimonial = {
   quote: string;
   name: string;
@@ -71,22 +73,19 @@ const testimonials: Testimonial[] = [
 
 function MusicSchoolTestimonials() {
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-4">What Our Students Say</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {testimonials.map((testimonial, index) => (
-          <div
-            key={index}
-            className="bg-white shadow-md rounded-lg p-4 border border-gray-200"
-          >
-            <p className="italic text-gray-600">"{testimonial.quote}"</p>
-            <h3 className="mt-4 font-semibold text-gray-800">{testimonial.name}</h3>
-            <p className="text-sm text-gray-500">{testimonial.title}</p>
-          </div>
-        ))}
-      </div>
+    <div className="h-[40rem] w-full dark:bg-black dark:bg-grid-white/[0.2] relative flex flex-col items-center justify-center overflow-hidden">
+        <h2 className="text-3xl font-bold text-center mb-8 z-10">Hear our Harmony: Voices of success</h2>
+        <div className="flex justify-center w-full overflow-hidden px-4 sm:px-6 lg:px-8">
+            <div className="w-full max-w-6xl">
+            <InfiniteMovingCards
+                items={testimonials}
+                direction="right"
+                speed="slow"
+      />
+            </div>
+        </div>
     </div>
-  );
+  )
 }
 
-export default MusicSchoolTestimonials;
+export default MusicSchoolTestimonials
