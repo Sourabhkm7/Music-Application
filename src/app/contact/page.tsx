@@ -1,48 +1,62 @@
+'use client';
 
+import React, { FormEvent, useState } from 'react';
+import { BackgroundBeams } from '@/components/ui/background-beams';
 
-function page() {
+function MusicSchoolContactUs() {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log('Submitted:', { email, message });
+  };
+
   return (
-    <div className="min-h-screen bg-black py-12 pt-36">
-        <h1 className="text-lg md:text-7xl text-center font-sans font-bold mb-8 text-white">Contact Us</h1>
-        <p className="text-lg md:text-xl text-center font-sans mb-8 text-white" >We're here to help with questions aboutt our courses, programs, or events. <br />
-         Reach out and let us know how we can assist you in your musical journey.</p>
-         <form action="text"></form>
-    <div className="max-w-md mx-auto">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-            Email
-          </label>
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 pt-36 relative">
+      {' '}
+      {/* Ensure the container is relative */}
+      {/* BackgroundBeams with adjusted z-index */}
+      <BackgroundBeams className="absolute top-0 left-0 w-full h-full z-0" />
+      {/* Content with higher z-index */}
+      <div className="max-w-2xl mx-auto p-4 relative z-10">
+        {' '}
+        {/* Add relative and z-10 to bring content to the front */}
+        <h1 className="text-lg md:text-7xl text-center font-sans font-bold mb-8 text-white">
+          Contact Us
+        </h1>
+        <p className="text-neutral-500 max-w-lg mx-auto my-2 text-sm text-center">
+          We&apos;re here to help with any questions about our courses,
+          programs, or events. Reach out and let us know how we can assist you
+          in your musical journey.
+        </p>
+        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
             type="email"
-            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Your email address"
+            className="rounded-lg border border-neutral-800 focus:ring-2 focus:ring-teal-500 w-full p-4 bg-neutral-950 placeholder:text-neutral-700"
+            required
           />
-        </div>
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="message">
-            Message
-          </label>
           <textarea
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="Your message"
-            rows={4}
-          />
-        </div>
-        <div className="flex items-center justify-between">
+            className="rounded-lg border border-neutral-800 focus:ring-2 focus:ring-teal-500 w-full p-4 bg-neutral-950 placeholder:text-neutral-700"
+            rows={5}
+            required
+          ></textarea>
           <button
-            className="bg-blue-500 hover:bg-blue-700 items-center text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
+            type="submit"
+            className="px-6 py-2 rounded-lg bg-teal-500 text-white font-medium hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
           >
-            Send
+            Send Message
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
-    </div>
-  )
+  );
 }
 
-export default page
+export default MusicSchoolContactUs;
